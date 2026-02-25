@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health & Wellness — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  /* ── Tokens ──────────────────────────────────────────── */
+  :root {
+    --primary-dark:  #154360;
+    --primary-blue:  #2E86C1;
+    --primary-light: #A9CCE3;
+    --success:       #117A65;
+    --error:         #922B21;
+    --warning:       #D4AC0D;
+    --bg:            #F8F9FA;
+    --text-dark:     #1C2833;
+    --text-muted:    #6C7A94;
+    --white:         #FFFFFF;
+
+    --sp1: 4px;  --sp2: 8px;  --sp3: 12px;
+    --sp4: 16px; --sp6: 24px; --sp8: 32px;
+    --sp12: 48px; --sp16: 64px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--text-dark);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    background: var(--primary-dark);
+    padding: var(--sp4) var(--sp8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(21,67,96,.35);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: .3px;
+    display: flex; align-items: center; gap: var(--sp2);
+  }
+  .nav-logo span { color: var(--primary-light); font-style: italic; }
+  .nav-links { display: flex; gap: var(--sp6); }
+  .nav-links a {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--primary-blue);
+    color: var(--white) !important;
+    padding: var(--sp2) var(--sp4);
+    border-radius: 6px;
+    font-weight: 600 !important;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────────────── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp8); }
+  section { padding: var(--sp16) 0; }
+  section + section { border-top: 1px solid #e4eaf0; }
+
+  /* ── SECTION HEADERS ─────────────────────────────────── */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: var(--sp2);
+  }
+  h1.display {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--primary-dark);
+    margin-bottom: var(--sp4);
+  }
+  h1 { font-size: 24px; font-weight: 700; color: var(--text-dark); }
+  h2 { font-size: 20px; font-weight: 600; color: var(--primary-blue); }
+
+  /* ── HERO ────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #1a5276 60%, #2e86c1 100%);
+    padding: var(--sp16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--primary-light);
+    margin-bottom: var(--sp4);
+    animation: fadeUp .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: var(--sp6);
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { color: var(--primary-light); font-style: italic; }
+  .hero p {
+    font-size: 18px; color: rgba(255,255,255,.8);
+    max-width: 520px; margin-bottom: var(--sp8);
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: var(--sp4); flex-wrap: wrap;
+    animation: fadeUp .6s .3s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── BUTTONS ─────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: var(--sp3) var(--sp6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    border-radius: 8px; border: 2px solid transparent;
+    cursor: pointer; text-decoration: none;
+    transition: all .18s ease;
+    letter-spacing: .3px;
+    gap: var(--sp2);
+  }
+  .btn:focus-visible { outline: 3px solid var(--primary-light); outline-offset: 3px; }
+
+  .btn-primary {
+    background: var(--primary-dark); color: var(--white);
+    border-color: var(--primary-dark);
+  }
+  .btn-primary:hover {
+    background: #1a5276; border-color: #1a5276;
+    box-shadow: 0 4px 16px rgba(21,67,96,.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent; color: var(--primary-blue);
+    border-color: var(--primary-blue);
+  }
+  .btn-secondary:hover {
+    background: rgba(46,134,193,.08);
+    transform: translateY(-1px);
+  }
+
+  .btn-danger {
+    background: var(--error); color: var(--white);
+    border-color: var(--error);
+  }
+  .btn-danger:hover {
+    background: #7b241c; border-color: #7b241c;
+    box-shadow: 0 4px 16px rgba(146,43,33,.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent; color: var(--primary-blue);
+    border-color: transparent;
+  }
+  .btn-ghost:hover { background: rgba(46,134,193,.06); }
+
+  /* white variant for hero */
+  .btn-white {
+    background: var(--white); color: var(--primary-dark);
+    border-color: var(--white);
+  }
+  .btn-white:hover {
+    background: var(--primary-light);
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    transform: translateY(-1px);
+  }
+  .btn-outline-white {
+    background: transparent; color: var(--white);
+    border-color: rgba(255,255,255,.5);
+  }
+  .btn-outline-white:hover {
+    background: rgba(255,255,255,.1);
+    border-color: var(--white);
+  }
+
+  /* ── BADGES ──────────────────────────────────────────── */
+  .badge {
+    display: inline-block;
+    font-size: 12px; font-weight: 700;
+    color: var(--white);
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: .3px;
+    line-height: 1.4;
+  }
+  .badge-confirmed  { background: var(--success); }
+  .badge-pending    { background: var(--warning); color: var(--text-dark); }
+  .badge-completed  { background: var(--primary-blue); }
+  .badge-cancelled  { background: var(--error); }
+
+  /* ── GRID DEMOS ──────────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp6); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--sp6); }
+  .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: var(--sp6); }
+
+  /* ── CARDS ───────────────────────────────────────────── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--primary-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(21,67,96,.12);
+    transform: translateY(-3px);
+  }
+  .card-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-thumb-inner {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+  .card-body { padding: var(--sp6); }
+  .card-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--sp3);
+  }
+  .card-title {
+    font-size: 18px; font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: var(--sp2);
+  }
+  .card-info {
+    font-size: 14px; color: var(--text-muted);
+    display: flex; gap: var(--sp4); margin-bottom: var(--sp3);
+  }
+  .card-desc {
+    font-size: 14px; color: var(--text-muted);
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+    margin-bottom: var(--sp4);
+  }
+
+  /* ── FORM INPUTS ─────────────────────────────────────── */
+  .form-group { display: flex; flex-direction: column; gap: var(--sp2); }
+  .form-label {
+    font-size: 14px; font-weight: 600;
+    color: var(--text-dark); letter-spacing: .2px;
+  }
+  .form-input {
+    height: 44px; padding: 0 var(--sp4);
+    font-family: 'DM Sans', sans-serif; font-size: 16px;
+    color: var(--text-dark);
+    background: var(--white);
+    border: 1.5px solid var(--primary-light);
+    border-radius: 8px; outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .form-input::placeholder { color: var(--text-muted); }
+  .form-input:focus {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(21,67,96,.1);
+  }
+  .form-input.error { border-color: var(--error); }
+  .form-input.error:focus { box-shadow: 0 0 0 3px rgba(146,43,33,.12); }
+  .form-error {
+    font-size: 13px; color: var(--error); font-weight: 500;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .form-hint { font-size: 13px; color: var(--text-muted); }
+
+  select.form-input { cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%236C7A94' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  /* ── COLOR SWATCHES ──────────────────────────────────── */
+  .swatch-grid { display: flex; flex-wrap: wrap; gap: var(--sp4); }
+  .swatch {
+    width: 100px; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    flex-shrink: 0;
+  }
+  .swatch-color { height: 64px; }
+  .swatch-label {
+    padding: var(--sp2);
+    background: var(--white);
+    border-top: 1px solid #e4eaf0;
+  }
+  .swatch-name { font-size: 11px; font-weight: 700; color: var(--text-dark); }
+  .swatch-hex  { font-size: 10px; color: var(--text-muted); font-family: 'DM Mono', monospace; }
+
+  /* ── TYPE SCALE ──────────────────────────────────────── */
+  .type-row {
+    display: flex; align-items: baseline;
+    gap: var(--sp4); padding: var(--sp4) 0;
+    border-bottom: 1px solid #f0f4f7;
+  }
+  .type-meta {
+    min-width: 140px; font-size: 12px;
+    color: var(--text-muted); font-family: 'DM Mono', monospace;
+    flex-shrink: 0;
+  }
+
+  /* ── CALLOUT / ALERT ─────────────────────────────────── */
+  .callout {
+    border-radius: 8px; padding: var(--sp4) var(--sp6);
+    border-left: 4px solid; display: flex; gap: var(--sp3);
+    align-items: flex-start;
+  }
+  .callout-info    { background: rgba(169,204,227,.18); border-color: var(--primary-blue); }
+  .callout-success { background: rgba(17,122,101,.08);  border-color: var(--success); }
+  .callout-warning { background: rgba(212,172,13,.1);   border-color: var(--warning); }
+  .callout-error   { background: rgba(146,43,33,.08);   border-color: var(--error); }
+  .callout-icon    { font-size: 20px; line-height: 1; margin-top: 2px; }
+  .callout-title   { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+  .callout-body    { font-size: 14px; color: var(--text-muted); }
+
+  /* ── BOOKING STEPS ───────────────────────────────────── */
+  .steps { display: flex; align-items: center; gap: 0; margin-bottom: var(--sp8); }
+  .step {
+    display: flex; align-items: center; gap: var(--sp2); flex: 1;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: ''; position: absolute;
+    left: 36px; right: 0; top: 50%; transform: translateY(-50%);
+    height: 2px; background: var(--primary-light); z-index: 0;
+  }
+  .step.done::after, .step.active::after { background: var(--primary-blue); }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+    position: relative; z-index: 1;
+    border: 2px solid var(--primary-light);
+    background: var(--bg); color: var(--text-muted);
+    transition: all .2s;
+  }
+  .step.done  .step-num { background: var(--primary-blue); border-color: var(--primary-blue); color: var(--white); }
+  .step.active .step-num{ background: var(--primary-dark); border-color: var(--primary-dark); color: var(--white); }
+  .step-label { font-size: 13px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+  .step.done   .step-label { color: var(--primary-blue); }
+  .step.active .step-label { color: var(--primary-dark); }
+
+  /* ── BOOKING TABLE ───────────────────────────────────── */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; font-size: 12px; font-weight: 700;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 1px; padding: var(--sp3) var(--sp4);
+    border-bottom: 2px solid var(--primary-light);
+  }
+  td {
+    padding: var(--sp3) var(--sp4);
+    font-size: 14px; color: var(--text-dark);
+    border-bottom: 1px solid #f0f4f7;
+    vertical-align: middle;
+  }
+  tr:hover td { background: rgba(169,204,227,.08); }
+
+  /* ── MISC ────────────────────────────────────────────── */
+  .panel {
+    background: var(--white);
+    border: 1px solid var(--primary-light);
+    border-radius: 12px; padding: var(--sp6);
+  }
+  .panel + .panel { margin-top: var(--sp4); }
+  .panel-title {
+    font-size: 16px; font-weight: 700; color: var(--primary-dark);
+    margin-bottom: var(--sp4); padding-bottom: var(--sp3);
+    border-bottom: 1px solid var(--primary-light);
+  }
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px; color: var(--success);
+    background: rgba(17,122,101,.06);
+    padding: 2px 6px; border-radius: 4px;
+  }
+
+  .flex { display: flex; }
+  .flex-wrap { flex-wrap: wrap; }
+  .items-center { align-items: center; }
+  .gap-2 { gap: var(--sp2); }
+  .gap-4 { gap: var(--sp4); }
+  .gap-6 { gap: var(--sp6); }
+  .mb-2 { margin-bottom: var(--sp2); }
+  .mb-4 { margin-bottom: var(--sp4); }
+  .mb-6 { margin-bottom: var(--sp6); }
+  .mb-8 { margin-bottom: var(--sp8); }
+  .mt-2 { margin-top: var(--sp2); }
+  .mt-4 { margin-top: var(--sp4); }
+  .text-muted { color: var(--text-muted); font-size: 14px; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .steps .step-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">
+    ✦ Viva<span>Well</span>
+  </div>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">Practitioners</a>
+    <a href="#">My Bookings</a>
+    <a href="#" class="nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Health & Wellness Platform</p>
+    <h1>Your wellness journey<br><em>starts here</em></h1>
+    <p>Browse services, choose a practitioner, and book your appointment — all in a few clicks.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn btn-white">Book a Service</a>
+      <a href="#" class="btn btn-outline-white">View Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COLOR PALETTE ─────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.2 Color System</p>
+    <h1 class="display mb-4">Colour Palette</h1>
+    <p class="text-muted mb-8">Semantic tokens driving every UI decision across the platform.</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#154360"></div>
+        <div class="swatch-label"><div class="swatch-name">Primary Dark</div><div class="swatch-hex">#154360</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2E86C1"></div>
+        <div class="swatch-label"><div class="swatch-name">Primary Blue</div><div class="swatch-hex">#2E86C1</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#A9CCE3"></div>
+        <div class="swatch-label"><div class="swatch-name">Primary Light</div><div class="swatch-hex">#A9CCE3</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#117A65"></div>
+        <div class="swatch-label"><div class="swatch-name">Success Green</div><div class="swatch-hex">#117A65</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#922B21"></div>
+        <div class="swatch-label"><div class="swatch-name">Error Red</div><div class="swatch-hex">#922B21</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#D4AC0D"></div>
+        <div class="swatch-label"><div class="swatch-name">Warning Yellow</div><div class="swatch-hex">#D4AC0D</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F8F9FA; border: 1px solid #e4eaf0;"></div>
+        <div class="swatch-label"><div class="swatch-name">Background</div><div class="swatch-hex">#F8F9FA</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1C2833"></div>
+        <div class="swatch-label"><div class="swatch-name">Text Dark</div><div class="swatch-hex">#1C2833</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6C7A94"></div>
+        <div class="swatch-label"><div class="swatch-name">Text Muted</div><div class="swatch-hex">#6C7A94</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TYPOGRAPHY ────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.3 Typography</p>
+    <h1 class="display mb-4">Type Scale</h1>
+    <p class="text-muted mb-8">All sizes in rem from a 16px base, respecting user font preferences.</p>
+    <div class="panel">
+      <div class="type-row">
+        <div class="type-meta">32px · Bold<br>Display / H1</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:32px;color:#154360;font-weight:400;">Display — Page Title</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">24px · Bold<br>Section Heading</div>
+        <div style="font-size:24px;font-weight:700;color:#1C2833;">Section Heading (H1)</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">20px · SemiBold<br>Sub-heading H2</div>
+        <div style="font-size:20px;font-weight:600;color:#2E86C1;">Sub-heading — Card Title</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">16px · Regular<br>Body Regular</div>
+        <div style="font-size:16px;font-weight:400;color:#1C2833;">Body copy — descriptive text and paragraphs throughout the interface.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">14px · Regular<br>Body Small</div>
+        <div style="font-size:14px;font-weight:400;color:#6C7A94;">Caption · Timestamp · Metadata label — 14 Feb 2025 · 10:30 AM</div>
+      </div>
+      <div class="type-row" style="border:none">
+        <div class="type-meta">14px · Mono<br>Code</div>
+        <code style="font-size:14px;">GET /api/v1/bookings/:id</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BUTTONS ───────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.4.1 Components</p>
+    <h1 class="display mb-4">Button Variants</h1>
+    <p class="text-muted mb-8">All buttons meet the 44px minimum tap target. Focus rings are visible for keyboard navigation.</p>
+    <div class="panel">
+      <div class="flex flex-wrap gap-4 items-center mb-6">
+        <button class="btn btn-primary">Book Now</button>
+        <button class="btn btn-secondary">View Details</button>
+        <button class="btn btn-danger">Cancel Booking</button>
+        <button class="btn btn-ghost">← Back</button>
+      </div>
+      <div class="flex flex-wrap gap-4 items-center">
+        <button class="btn btn-primary" disabled style="opacity:.45;cursor:not-allowed;">Book Now</button>
+        <span class="text-muted">← disabled state</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATUS BADGES ─────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.4.4 Components</p>
+    <h1 class="display mb-4">Status Badges</h1>
+    <p class="text-muted mb-8">Color-coded pill labels communicate booking status at a glance.</p>
+    <div class="panel">
+      <div class="flex flex-wrap gap-4 items-center mb-6">
+        <span class="badge badge-confirmed">Confirmed</span>
+        <span class="badge badge-pending">Pending</span>
+        <span class="badge badge-completed">Completed</span>
+        <span class="badge badge-cancelled">Cancelled</span>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <div class="callout callout-success">
+          <span class="callout-icon">✓</span>
+          <div><div class="callout-title" style="color:var(--success)">Booking Confirmed</div><div class="callout-body">Your appointment on 14 Mar at 10:30 AM has been confirmed.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-4 mt-4">
+      <div class="callout callout-warning" style="flex:1;min-width:240px;">
+        <span class="callout-icon">⚠</span>
+        <div><div class="callout-title" style="color:#9a7d0a">Slot Expiring</div><div class="callout-body">This time slot will expire in 4:32.</div></div>
+      </div>
+      <div class="callout callout-error" style="flex:1;min-width:240px;">
+        <span class="callout-icon">✕</span>
+        <div><div class="callout-title" style="color:var(--error)">Payment Failed</div><div class="callout-body">Your card ending in 4242 was declined. Please try again.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FORM INPUTS ───────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.4.2 Components</p>
+    <h1 class="display mb-4">Form Inputs</h1>
+    <p class="text-muted mb-8">White backgrounds, light blue borders at rest, navy on focus. Clear validation states.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Booking Form</div>
+        <div style="display:flex;flex-direction:column;gap:var(--sp4);">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" value="Sarah Kamau">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Service</label>
+            <select class="form-input">
+              <option>Deep Tissue Massage — 60 min</option>
+              <option>Yoga Flow Session — 90 min</option>
+              <option>Physiotherapy Consult — 45 min</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Date</label>
+            <input class="form-input" type="date" value="2026-03-14">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address <span style="color:var(--error)">*</span></label>
+            <input class="form-input error" type="email" value="sarah@">
+            <span class="form-error">⚠ Please enter a valid email address.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Notes</label>
+            <input class="form-input" type="text" placeholder="Any health concerns or preferences…">
+            <span class="form-hint">Optional. Your practitioner will review this before your session.</span>
+          </div>
+          <div class="flex gap-4 mt-2">
+            <button class="btn btn-primary" style="flex:1">Confirm Booking</button>
+            <button class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Cards (side panel) -->
+      <div style="display:flex;flex-direction:column;gap:var(--sp4);">
+        <div class="panel">
+          <div class="panel-title">Booking Summary</div>
+          <table>
+            <tr><td style="color:var(--text-muted);width:40%">Service</td><td style="font-weight:600">Deep Tissue Massage</td></tr>
+            <tr><td style="color:var(--text-muted)">Duration</td><td>60 minutes</td></tr>
+            <tr><td style="color:var(--text-muted)">Date</td><td>14 March 2026</td></tr>
+            <tr><td style="color:var(--text-muted)">Time</td><td>10:30 AM</td></tr>
+            <tr><td style="color:var(--text-muted)">Practitioner</td><td>Dr. Aisha Omondi</td></tr>
+            <tr><td style="color:var(--text-muted)">Price</td><td style="font-weight:700;color:var(--primary-dark);font-size:18px">KES 3,500</td></tr>
+          </table>
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">ℹ</span>
+          <div><div class="callout-title" style="color:var(--primary-blue)">Free Cancellation</div><div class="callout-body">Cancel or reschedule up to 24 hours before your appointment at no charge.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICE CARDS ─────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.4.3 Components</p>
+    <h1 class="display mb-4">Service Cards</h1>
+    <p class="text-muted mb-8">Full-width on mobile → 2-col on tablet → 3-col on desktop.</p>
+    <div class="grid-3">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-thumb">
+          <div class="card-thumb-inner" style="background:linear-gradient(135deg,#A9CCE3,#154360)">🧘</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge" style="background:var(--primary-light);color:var(--primary-dark)">Yoga</span>
+            <span class="badge badge-confirmed">Available</span>
+          </div>
+          <div class="card-title">Restorative Yoga Flow</div>
+          <div class="card-info">
+            <span>⏱ 90 min</span>
+            <span>💰 KES 2,800</span>
+          </div>
+          <p class="card-desc">A gentle, slow-paced class focusing on deep stretching and mindful breathing to reduce stress and improve flexibility.</p>
+          <button class="btn btn-primary" style="width:100%">Book This Service</button>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-thumb">
+          <div class="card-thumb-inner" style="background:linear-gradient(135deg,#117A65,#154360)">💆</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge" style="background:rgba(17,122,101,.12);color:var(--success)">Massage</span>
+            <span class="badge badge-pending">2 slots left</span>
+          </div>
+          <div class="card-title">Deep Tissue Massage</div>
+          <div class="card-info">
+            <span>⏱ 60 min</span>
+            <span>💰 KES 3,500</span>
+          </div>
+          <p class="card-desc">Targeted therapy for chronic muscle tension and pain relief. Ideal for athletes or those with desk-related discomfort.</p>
+          <button class="btn btn-primary" style="width:100%">Book This Service</button>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-thumb">
+          <div class="card-thumb-inner" style="background:linear-gradient(135deg,#2E86C1,#154360)">🩺</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge" style="background:rgba(46,134,193,.12);color:var(--primary-blue)">Physio</span>
+            <span class="badge badge-completed">Popular</span>
+          </div>
+          <div class="card-title">Physiotherapy Consult</div>
+          <div class="card-info">
+            <span>⏱ 45 min</span>
+            <span>💰 KES 4,200</span>
+          </div>
+          <p class="card-desc">Comprehensive assessment and personalised treatment plan with a certified physiotherapist for injury recovery and prevention.</p>
+          <button class="btn btn-primary" style="width:100%">Book This Service</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOOKING WIZARD STEPS ──────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">Booking Wizard</p>
+    <h1 class="display mb-4">Step Indicator</h1>
+    <p class="text-muted mb-8">Horizontal step indicator — shown in full on md+ breakpoints.</p>
+    <div class="panel">
+      <div class="steps">
+        <div class="step done">
+          <div class="step-num">✓</div>
+          <div class="step-label">Choose Service</div>
+        </div>
+        <div class="step done">
+          <div class="step-num">✓</div>
+          <div class="step-label">Select Time</div>
+        </div>
+        <div class="step active">
+          <div class="step-num">3</div>
+          <div class="step-label">Your Details</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-label">Review & Pay</div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-label">Confirmation</div>
+        </div>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ</span>
+        <div><div class="callout-body">Step 3 of 5 — Fill in your contact details to complete your booking for <strong>Restorative Yoga Flow on 14 Mar 2026 at 09:00 AM</strong>.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOOKINGS TABLE ─────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">Admin Panel</p>
+    <h1 class="display mb-4">Upcoming Bookings</h1>
+    <p class="text-muted mb-8">A sample data table from the admin dashboard view.</p>
+    <div class="panel" style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Ref</th>
+            <th>Client</th>
+            <th>Service</th>
+            <th>Date & Time</th>
+            <th>Practitioner</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>BK-00412</code></td>
+            <td>Sarah Kamau</td>
+            <td>Deep Tissue Massage</td>
+            <td><span style="font-size:14px">14 Mar 2026<br><span class="text-muted">10:30 AM</span></span></td>
+            <td>Dr. Aisha Omondi</td>
+            <td><span class="badge badge-confirmed">Confirmed</span></td>
+            <td><button class="btn btn-ghost" style="min-height:32px;padding:4px 12px;font-size:13px">View</button></td>
+          </tr>
+          <tr>
+            <td><code>BK-00411</code></td>
+            <td>James Mwangi</td>
+            <td>Yoga Flow Session</td>
+            <td><span style="font-size:14px">15 Mar 2026<br><span class="text-muted">07:00 AM</span></span></td>
+            <td>Fatuma Hassan</td>
+            <td><span class="badge badge-pending">Pending</span></td>
+            <td><button class="btn btn-ghost" style="min-height:32px;padding:4px 12px;font-size:13px">View</button></td>
+          </tr>
+          <tr>
+            <td><code>BK-00410</code></td>
+            <td>Priya Nair</td>
+            <td>Physiotherapy Consult</td>
+            <td><span style="font-size:14px">12 Mar 2026<br><span class="text-muted">02:00 PM</span></span></td>
+            <td>Dr. Ben Otieno</td>
+            <td><span class="badge badge-completed">Completed</span></td>
+            <td><button class="btn btn-ghost" style="min-height:32px;padding:4px 12px;font-size:13px">View</button></td>
+          </tr>
+          <tr>
+            <td><code>BK-00409</code></td>
+            <td>Omar Farouk</td>
+            <td>Sports Massage</td>
+            <td><span style="font-size:14px">10 Mar 2026<br><span class="text-muted">11:00 AM</span></span></td>
+            <td>Dr. Aisha Omondi</td>
+            <td><span class="badge badge-cancelled">Cancelled</span></td>
+            <td><button class="btn btn-ghost" style="min-height:32px;padding:4px 12px;font-size:13px">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPACING ────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">5.5 Spacing</p>
+    <h1 class="display mb-4">Spacing Scale</h1>
+    <p class="text-muted mb-8">Eight core values from Tailwind's rem-based scale.</p>
+    <div class="panel">
+      <div class="flex flex-wrap gap-4 items-center">
+        <div style="text-align:center">
+          <div style="width:4px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">4px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:8px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">8px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:12px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">12px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:16px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">16px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:24px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">24px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:32px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">32px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">48px</span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:64px;height:40px;background:var(--primary-blue);margin:0 auto var(--sp2)"></div>
+          <span class="text-muted" style="font-size:12px">64px</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────── -->
+<footer style="background:var(--primary-dark);padding:var(--sp8) 0;margin-top:var(--sp16)">
+  <div class="container">
+    <div class="flex items-center" style="justify-content:space-between;flex-wrap:wrap;gap:var(--sp4)">
+      <div class="nav-logo">✦ Viva<span>Well</span></div>
+      <span style="color:rgba(255,255,255,.5);font-size:13px">Design System — Visual Reference · 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
